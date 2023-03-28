@@ -1,21 +1,10 @@
 body {
 	margin: 0;
 	padding: 0;
-	outline: none;
-	font-family: Arial, sans-serif;
-}
-
-body::before {
-	content: "";
 	background: url('https://raw.githubusercontent.com/catppuccin/wallpapers/main/landscapes/Bridge.jpg') no-repeat center center fixed;
 	background-size: cover;
-	position: fixed;
 	outline: none;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	z-index: -1;
+	font-family: Arial, sans-serif;
 }
 
 a {
