@@ -78,6 +78,14 @@ nav ul li a {
 	text-decoration: none;
 }
 
+.desktop-only {
+    display: block;
+}
+
+.mobile-only {
+    display: none;
+}
+
 main {
 	display: flex;
 	flex-direction: column;
@@ -95,14 +103,15 @@ h1 {
 	text-shadow: 2px 2px 2px #000;
 }
 
-.scroll-section {
+/* quarkgui */
+.quarkgui-section {
 	background: linear-gradient(45deg, #1a1919, #2b2a2a);
 	padding: 50px;
 	scroll-behavior: smooth;
 	scroll-margin-top: 50px;
 }
 
-.scroll-content {
+.quarkgui-content {
 	max-width: 800px;
 	display: block;
 	margin: 0 auto;
@@ -110,24 +119,24 @@ h1 {
 	color: #fff;
 }
 
-.scroll-content h2 {
+.quarkgui-content h2 {
 	font-size: 36px;
 	margin-bottom: 20px;
 }
 
-.scroll-content p {
+.quarkgui-content p {
 	font-size: 18px;
 	line-height: 1.5;
 	margin-bottom: 40px;
 }
 
-.scroll-content img {
+.quarkgui-content img {
 	max-width: 100%;
 	height: auto;
 	margin-bottom: 40px;
 }
 
-.scroll-down {
+.quarkgui-down {
 	display: block;
 	width: 50px;
 	height: 50px;
@@ -141,9 +150,153 @@ h1 {
 	cursor: pointer;
 }
 
-.scroll-down i {
+.quarkgui-down i {
 	color: white;
 	font-size: 30px;
+}
+
+/* powerbash */
+.powerbash-section {
+	background: linear-gradient(45deg, #181926, #24273a);
+	padding: 50px;
+	scroll-behavior: smooth;
+	scroll-margin-top: 50px;
+}
+
+.powerbash-content {
+	max-width: 800px;
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+	color: #fff;
+}
+
+.powerbash-content h2 {
+	font-size: 36px;
+	margin-bottom: 20px;
+}
+
+.powerbash-content p {
+	font-size: 18px;
+	line-height: 1.5;
+	margin-bottom: 40px;
+}
+
+.powerbash-content img {
+	max-width: 100%;
+	height: auto;
+	margin-bottom: 40px;
+}
+
+.powerbash-down {
+	display: block;
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	bottom: 50px;
+	left: 50%;
+	margin-left: -25px;
+	text-align: center;
+	line-height: 50px;
+	z-index: 1;
+	cursor: pointer;
+}
+
+.powerbash-down i {
+	color: white;
+	font-size: 30px;
+}
+
+/* discord-bsd */
+.discord-bsd-section {
+	background: linear-gradient(45deg, #363a4f, #24273a);
+	padding: 50px;
+	scroll-behavior: smooth;
+	scroll-margin-top: 50px;
+}
+
+.discord-bsd-content {
+	max-width: 800px;
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+	color: #fff;
+}
+
+.discord-bsd-content h2 {
+	font-size: 36px;
+	margin-bottom: 20px;
+}
+
+.discord-bsd-content p {
+	font-size: 18px;
+	line-height: 1.5;
+	margin-bottom: 40px;
+}
+
+.discord-bsd-content img {
+	max-width: 100%;
+	height: auto;
+	margin-bottom: 40px;
+}
+
+.discord-bsd-down {
+	display: block;
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	bottom: 50px;
+	left: 50%;
+	margin-left: -25px;
+	text-align: center;
+	line-height: 50px;
+	z-index: 1;
+	cursor: pointer;
+}
+
+.discord-bsd-down i {
+	color: white;
+	font-size: 30px;
+}
+
+.instruction-button {
+	display: inline-block;
+	padding: 20px 40px;
+	border-radius: 30px;
+	font-size: 24px;
+	font-weight: bold;
+	color: #fff;
+	background: linear-gradient(45deg, #8aadf4, #b7bdf8);
+	text-decoration: none;
+	font-family: 'Lato', sans-serif;
+	transition: all 1s ease;
+	display: block;
+	margin: 40px auto 0;
+}
+
+.instruction-button:hover {
+	background: linear-gradient(45deg, #b7bdf8, #8aadf4);
+	transition: all 1s ease;
+}
+
+.instruction-button2 {
+	display: inline-block;
+	padding: 20px 40px;
+	border-radius: 30px;
+	font-size: 24px;
+	font-weight: bold;
+	color: #fff;
+	background: linear-gradient(45deg, #7287fd, #04a5e5);
+	text-decoration: none;
+	font-family: 'Lato', sans-serif;
+	transition: all 1s ease;
+	display: block;
+	margin: 40px auto 0;
+}
+
+.instruction-button2:hover {
+	background: linear-gradient(45deg, #04a5e5, #7287fd);
+	transition: all 1s ease;
 }
 
 .download-button {
@@ -199,27 +352,77 @@ h1 {
 		font-size: 36px;
 	}
 	
-	.scroll-down {
+	.quarkgui-down {
 		bottom: 20px;
 	}
   
-	.scroll-section {
+	.quarkgui-section {
 		padding: 20px;
 	}
 	
-	.scroll-content {
+	.quarkgui-content {
 		padding: 20px;
 	}
 	
-	.scroll-content h2 {
+	.quarkgui-content h2 {
 		font-size: 24px;
 	}
 	
-	.scroll-content p {
+	.quarkgui-content p {
 		font-size: 16px;
 	}
 	
 	.download-button {
+		font-size: 20px;
+	}
+	
+	/* */
+	.powerbash-down {
+		bottom: 20px;
+	}
+  
+	.powerbash-section {
+		padding: 20px;
+	}
+	
+	.powerbash-content {
+		padding: 20px;
+	}
+	
+	.powerbash-content h2 {
+		font-size: 24px;
+	}
+	
+	.powerbash-content p {
+		font-size: 16px;
+	}
+	
+	.instruction-button {
+		font-size: 20px;
+	}
+
+	/* */
+	.discord-bsd-down {
+		bottom: 20px;
+	}
+  
+	.discord-bsd-section {
+		padding: 20px;
+	}
+	
+	.discord-bsd-content {
+		padding: 20px;
+	}
+	
+	.discord-bsd-content h2 {
+		font-size: 24px;
+	}
+	
+	.discord-bsd-content p {
+		font-size: 16px;
+	}
+	
+	.instruction-button2 {
 		font-size: 20px;
 	}
 	
@@ -231,13 +434,12 @@ h1 {
 	h1 {
 		font-size: 36px;
 	}
-	
-	.scroll-down-container {
-		text-align: center;
-		margin-bottom: 20px;
-	}
-	
-	.scroll-down {
+
+	.desktop-only {
 		display: none;
+	}
+
+	.mobile-only {
+		display: block;
 	}
 }
