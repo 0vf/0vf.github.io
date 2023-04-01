@@ -78,10 +78,6 @@ nav ul li a {
 	text-decoration: none;
 }
 
-.disbsd-desktop {
-    display: block;
-}
-
 .disbsd-mobile {
     display: none;
 }
