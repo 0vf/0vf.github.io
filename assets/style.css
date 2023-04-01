@@ -78,11 +78,11 @@ nav ul li a {
 	text-decoration: none;
 }
 
-.desktop-only {
+.disbsd-desktop {
     display: block;
 }
 
-.mobile-only {
+.disbsd-mobile {
     display: none;
 }
 
@@ -342,7 +342,7 @@ h1 {
 	nav ul li {
 		margin: 10px;
 	}
-  
+
 	main {
 		height: auto;
 		padding: 20px 0;
@@ -435,11 +435,15 @@ h1 {
 		font-size: 36px;
 	}
 
-	.desktop-only {
+	.disbsd-desktop {
 		display: none;
 	}
 
-	.mobile-only {
+	.disbsd-mobile {
 		display: block;
+	}
+
+	.docs {
+		display: none;
 	}
 }

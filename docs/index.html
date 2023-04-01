@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ffqq</title>
+		<meta content="powerbash instructions" property="og:title" />
+		<meta content="https://ffqq.gq/" property="og:url" />
+		<meta content="https://ffqq.gq/assets/pfp.png" property="og:image" />
+		<meta content="#4c4f69" data-react-helmet="true" name="theme-color" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<script src="https://kit.fontawesome.com/38a4a1bdf6.js" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+		<link rel="stylesheet" href="https://unpkg.com/@catppuccin/highlightjs@0.1.2/css/catppuccin-mocha.css">
+		<script>hljs.highlightAll();</script>
+		<link href="https://fonts.googleapis.com/css2?family=Caveat&family=Lato:wght@300&family=Tajawal:wght@200;400&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<div class="logo">
+				<a href="/index.html" style="font-family: 'Caveat', cursive;">ffqq</a>
+			</div>
+			<nav>
+				<ul>
+				  <li><a href="https://github.com/z-ffqq"><i class="fab fa-github"></i></a></li>
+                  <li class="docs"><a href="/docs/index.html">Documentation</a></li>
+				  <li><a href="https://github.com/z-ffqq/QuarkGUI">QuarkGUI</a></li>
+				  <li><a href="https://github.com/z-ffqq/powerbash">powerbash</a></li>
+				  <li class="disbsd-mobile"><a href="https://github.com/z-ffqq/Discord-BSD">Dis-BSD</a></li>
+				  <li class="disbsd-desktop"><a href="https://github.com/z-ffqq/Discord-BSD">Discord-BSD</a></li>
+				</ul>
+			  </nav>
+		</header>
+		<main class="doc">
+            <h1 id="documentation">Documentation</h1>
+            <h2 id="documentation-for-my-software">Documentation for my software</h2>
+            <p><a href="powerbash.html"><i class="fa-solid fa-link"></i> powerbash installation guide</a><br>
+            <a href="discord-bsd.html"><i class="fa-solid fa-link"></i> Discord-BSD installation guide</a><br>
+            <a href="../index.html"><i class="fa-solid fa-link"></i> Back to main page</a></p>
+		</main>
+        <main class=mobile>
+			<p>Mobile isn't supported in documentation</p>
+		</main>
+		<script>
+			const copyButtons = document.querySelectorAll('.copy-button');
+			
+					copyButtons.forEach(button => {
+						button.addEventListener('click', () => {
+							const codeBlock = button.parentNode.querySelector('code');
+							navigator.clipboard.writeText(codeBlock.innerText);
+						});
+					});
+		</script>
+	</body>
+</html>

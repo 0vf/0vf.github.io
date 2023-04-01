@@ -1,0 +1,234 @@
+body {
+	margin: 0;
+	padding: 0;
+	outline: none;
+	background-color: transparent;
+	font-family: Arial, sans-serif;
+}
+
+body::before {
+	content: "";
+	background: url('https://raw.githubusercontent.com/catppuccin/wallpapers/main/landscapes/Bridge.jpg') no-repeat center center fixed;
+	background-size: cover;
+	position: fixed;
+	outline: none;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: -1;
+}
+
+a {
+	color: lightskyblue;
+	text-decoration: none;
+}
+
+a:hover {
+	color: lightgrey;
+	text-decoration: none;
+}
+
+header {
+	display: flex;
+	height: 80px;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.7);
+	border-radius: 40px;
+	padding: 0 20px;
+	margin: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+.logo {
+	flex: 1;
+	margin-left: 30px;
+}
+
+.logo a {
+	color: #fff;
+	font-size: 28px;
+	transition: all 0.3s ease;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+nav {
+	flex: 2;
+	margin-right: 30px;
+}
+
+nav ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: flex-end;
+}
+
+nav ul li {
+	margin-left: 30px;
+}
+
+nav ul li a {
+	color: #fff;
+	transition: all 0.3s ease;
+	font-family: 'Lato', sans-serif;
+	font-size: 18px;
+	text-decoration: none;
+}
+
+header a {
+	color: white;
+	text-decoration: none;
+}
+
+header a:hover {
+	color: lightgrey;
+	text-decoration: none;
+}
+
+.disbsd-desktop {
+    display: block;
+}
+
+.disbsd-mobile {
+    display: none;
+}
+
+.docs-desktop {
+    display: block;
+}
+
+main {
+	display: flex;
+    color: #fff;
+	flex-direction: column;
+	height: calc(100vh - 80px);
+    margin: 0 auto;
+    max-width: 800px;
+    text-align: left;
+    padding: 20px;
+	background-color: transparent;
+}
+
+.mobile {
+    display: none;
+}
+
+.code-box {
+	padding-top: 2.5px;
+	padding-right: 15px;
+	padding-bottom: 2.5px;
+	padding-left: 15px;
+	background-color: #1E1E2E;
+	color: #fff;
+	border-radius: 10px;
+	position: relative;
+}
+
+.code-box .copy-button {
+  position: absolute;
+  right: 10px;
+  background-color: transparent;
+  color: #cdd6f4;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.doc {
+	background-color: rgba(0, 0, 0, 0.7);
+	border-radius: 40px;
+	padding: 20px;
+	margin: 20px auto;
+	font-family: 'Tajawal', sans-serif;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+	display: flex;
+	flex-direction: column;
+	backdrop-filter: blur(5px);
+	height: auto;
+}
+
+/* mobile */
+@media only screen and (max-width: 600px) {
+	header {
+		height: auto;
+		flex-direction: column;
+		margin: 10px;
+	}
+	
+	.logo {
+		margin: 10px 0;
+	}
+	
+	nav {
+		margin: 10px 0;
+	}
+	
+	nav ul {
+		justify-content: center;
+	}
+	
+	nav ul li {
+		margin: 10px;
+	}
+  
+	main {
+		height: auto;
+		padding: 20px 0;
+	}
+	
+	h1 {
+		font-size: 36px;
+	}
+	
+    .doc {
+        height: auto;
+        padding: 20px 0;
+        font-size: 14px;
+    }
+
+	main {
+		height: auto;
+		padding: 20px 0;
+	}
+	
+	h1 {
+		font-size: 36px;
+	}
+
+	.disbsd-desktop {
+		display: none;
+	}
+
+	.disbsd-mobile {
+		display: block;
+	}
+
+    .docs {
+		display: none;
+	}
+
+	.mobile {
+		display: block;
+	}
+
+    .doc {
+		display: none;
+	}
+
+	.mobile {
+        font-family: 'Tajawal', sans-serif;
+        font-size: 20px;
+        display: block;
+        flex-direction: column;
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+	}
+}
