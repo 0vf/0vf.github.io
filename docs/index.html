@@ -11,9 +11,6 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<script src="https://kit.fontawesome.com/38a4a1bdf6.js" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-		<link rel="stylesheet" href="https://unpkg.com/@catppuccin/highlightjs@0.1.2/css/catppuccin-mocha.css">
-		<script>hljs.highlightAll();</script>
 		<link href="https://fonts.googleapis.com/css2?family=Caveat&family=Lato:wght@300&family=Tajawal:wght@200;400&display=swap" rel="stylesheet">
 	</head>
 	<body>
@@ -42,15 +39,5 @@
         <main class=mobile>
 			<p>Mobile isn't supported in documentation</p>
 		</main>
-		<script>
-			const copyButtons = document.querySelectorAll('.copy-button');
-			
-					copyButtons.forEach(button => {
-						button.addEventListener('click', () => {
-							const codeBlock = button.parentNode.querySelector('code');
-							navigator.clipboard.writeText(codeBlock.innerText);
-						});
-					});
-		</script>
 	</body>
 </html>
