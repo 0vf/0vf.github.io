@@ -4,6 +4,11 @@ body {
 	outline: none;
 	background-color: transparent;
 	font-family: Arial, sans-serif;
+	scroll-behavior: smooth;
+}
+
+html {
+	scroll-behavior: smooth;
 }
 
 body::before {
@@ -38,6 +43,7 @@ header {
 	padding: 0 20px;
 	margin: 20px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+	backdrop-filter: blur(13px);
 }
 
 .logo {
