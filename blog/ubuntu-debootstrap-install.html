@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ffqq - Ubuntu Minimal Install Guide</title>
+		<meta content="powerbash instructions" property="og:title" />
+		<meta content="https://ffqq.gq/" property="og:url" />
+		<meta content="https://ffqq.gq/assets/pfp.png" property="og:image" />
+		<meta content="#4c4f69" data-react-helmet="true" name="theme-color" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="../assets/style2.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<script src="https://kit.fontawesome.com/38a4a1bdf6.js" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+		<link rel="stylesheet" href="https://unpkg.com/@catppuccin/highlightjs@0.1.2/css/catppuccin-mocha.css">
+		<script>hljs.highlightAll();</script>
+		<link href="https://fonts.googleapis.com/css2?family=Caveat&family=Lato:wght@300&family=Tajawal:wght@200;400&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<div class="logo">
+				<a href="/index.html" style="font-family: 'Caveat', cursive;">ffqq</a>
+			</div>
+			<nav>
+				<ul>
+					<li><a href="https://github.com/z-ffqq"><i class="fab fa-github"></i></a></li>
+					<li class="desktop"><a href="/docs/index.html">Documentation</a></li>
+					<li class="desktop"><a href="/blog/index.html">Blog</a></li>
+					<li><a href="https://github.com/z-ffqq/QuarkGUI">QuarkGUI</a></li>
+					<li><a href="https://github.com/z-ffqq/powerbash">powerbash</a></li>
+					<li class="mobile"><a href="https://github.com/z-ffqq/Discord-BSD">Dis-BSD</a></li>
+					<li class="desktop"><a href="https://github.com/z-ffqq/Discord-BSD">Discord-BSD</a></li>
+				</ul>
+			</nav>
+		</header>
+		<main class="doc">
+            <h1 id="a-short-guide-on-making-a-minimal-ubuntu-install">A short guide on making a minimal Ubuntu install</h1>
+			<h4>April 6, 2023 1:15 PM (GMT+3:00)</h4>
+            <p>Hey there, welcome to my first blog post.<br >
+            In this blogpost, I&#39;ll be explaining how I make minimal Ubuntu installs using XFS, Swap, Debootstrap, and some of the arch install scripts :)</p>
+            <h2 id="installation-media">Installation Media</h2>
+            <p>Any Ubuntu ISO will work (for this example I used the Ubuntu Server 22.04.2 iso, but I recommend using the desktop Ubuntu ISO to access this site.)<br>
+            Once you boot in, log in as the <code>ubuntu</code> user, then type <code>sudo su</code> to enter the root user.</p>
+            <h2 id="1-partitioning">#1: Partitioning</h2>
+            <p>Partitioning is fairly simple, usually I have my partitions organized like this</p>
+            <ol>
+            <li>EFI (fat32)</li>
+            <li>Swap</li>
+            <li>Root (XFS)</li>
+            </ol>
+            <p>Alright, so we&#39;ll be making a partition table with that order in mind:
+            First we&#39;ll be using <code>cfdisk</code> to create our partitions,  which is fairly simple to use (I assume you already know how to use it. We&#39;ll also assume that you are using a NVME drive for this, so change each command according to your setup</p>
+            <div class="code-box">
+			    <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+			        <pre><code class="language-bash">cfdisk /dev/nvme0n1</code></pre></div>
+            <p>Now that we&#39;ve created our partitions, it&#39;s time to move on to the next part: formatting them!
+            We&#39;ll first create our FAT32 filesystem for the EFI partition:</p>
+            <div class="code-box">
+				<button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+			<pre><code class="language-bash">mkfs.vfat -F32 /dev/nvme0n1p1</code></pre></div>
+            <p>Next, we&#39;ll be creating the swap partition:</p>
+            <div class="code-box">
+				<button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+				<pre><code class="language-bash">mkswap /dev/nvme0n1p2</code></pre></div>
+            <p>Finally, we&#39;ll be formatting the root partition (if you wanna use ext4, use <code>mkfs.ext4</code></p>
+            <div class="code-box">
+				<button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+				<pre><code class="language-bash">mkfs.xfs /dev/nvme0n1p3</code></pre></div>
+            <h2 id="2-mounting-partitions">#2: Mounting partitions</h2>
+            <p>Now, this is where the fun begins. We&#39;ll now be mounting our partitions accordingly
+            First, start off with the root partition:</p>
+            <div class="code-box">
+				<button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+				<pre><code class="language-bash">mount /dev/nvme0n1p3 /mnt</code></pre></div>
+            <p>Next, we&#39;ll mount the boot partition</p>
+            <div class="code-box">
+				<button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+				<pre><code class="language-bash">mkdir -p /mnt/boot/efi
+mount /dev/nvme0n1p1 /mnt/boot/efi</code></pre></div>
+            <p>Finally, we&#39;ll mount the swap partition</p>
+            <div class="code-box">
+				<button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+				<pre><code class="language-bash">swapon /dev/nvme0n1p2</code></pre></div>
+            <h2 id="3-installing-required-tools-for-this-guide">#3: Installing required tools for this guide</h2>
+            <p>We&#39;ll need 2 tools to proceed now: <code>debootstrap</code> and <code>arch-install-scripts</code>.
+            <code>arch-install-scripts</code> isn&#39;t necessary but makes life easier.
+            We&#39;ll first need to add the universe repository:</p>
+            <div class="code-box">
+				<button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+				<pre><code class="language-bash">add-apt-repository universe</code></pre></div>
+            <p>Then, we can install our tools</p>
+            <div class="code-box">
+				<button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+				<pre><code class="language-bash">apt update 
+apt install debootstrap arch-install-scripts</code></pre></div>
+            <h2 id="4-bootstrapping-packages-using-debootstrap">#4: Bootstrapping packages using <code>debootstrap</code></h2>
+            <p>Alright, let&#39;s now begin:
+            First, you can choose a <a href="https://launchpad.net/ubuntu/+archivemirrors">mirror</a> for fast download speeds, for this example I used a Saudi mirror (<code>https://mirrors.isu.net.sa/apt-mirror/</code>) since it&#39;s the closest to me.</p>
+            <p>After that, you can begin bootstrapping the system:</p>
+            <div class="code-box">
+				<button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+				<pre><code class="language-bash">debootstrap jammy /mnt https://mirrors.isu.net.sa/apt-mirror/</code></pre></div>
+            <p>Then, you should generate your fstab using <code>genfstab</code> provided in the <code>arch-install-scripts</code> package:</p>
+            <div class="code-box">
+				<button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+				<pre><code class="language-bash">genfstab -U /mnt &gt;&gt; /etc/fstab</code></pre></div>
+            <p>After that has finished, you can now chroot using <code>arch-chroot</code> provided in the <code>arch-install-scripts</code> package:</p>
+            <div class="code-box">
+				<button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+				<pre><code class="language-bash">arch-chroot /mnt</code></pre></div>
+            <h2 id="5-configuring-the-system">#5: Configuring the system</h2>
+            <p>First, make sure everything is up to date (it should be since you would&#39;ve just finished debootstrapping)</p>
+            <div class="code-box">
+				<button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+				<pre><code class="language-bash">apt update</code></pre></div>
+            <p>If there are updates available, run <code>apt upgrade</code></p>
+            <p>With that out of the way, let&#39;s begin:
+            First, we&#39;re gonna configure our timezone data and locales</p>
+            <div class="code-box">
+				<button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+				<pre><code class="language-bash">dpkg-reconfigure tzdata &amp;&amp; dpkg-reconfigure locales</code></pre></div>
+            <p>If you need to configure your keyboard, then run <code>dpkg-reconfigure keyboard-configuration</code></p>
+            <p>After that, configure your hostname (for this example, my hostname will be ffqq-pc)</p>
+            <div class="code-box">
+				<button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+				<pre><code class="language-bash">echo &quot;ffqq-pc&quot; &gt; /etc/hostname</code></pre></div>
+            <p>Then, give your root account a password:</p>
+            <div class="code-box">
+				<button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+				<pre><code class="language-bash">passwd</code></pre></div>
+            <h2 id="6-configuring-your-base-system--bootloader">#6: Configuring your base system &amp; bootloader</h2>
+            <p>Now, we&#39;ll initialize our newly-installed base Ubuntu install by adding basic utilities and GRUB:</p>
+            <div class="code-box">
+				<button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+				<pre><code class="language-bash">apt install grub-efi-amd64 efibootmgr linux-generic linux-generic-headers linux-generic-image</code></pre></div>
+            <p>Once that has finished, install base utilities:</p>
+            <div class="code-box">
+                <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+                <pre><code class="language-bash">apt install curl git man nano patch software-properties-common</code></pre></div>
+            <p>Now, install grub</p>
+            <div class="code-box">
+				<button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+				<pre><code class="language-bash">grub-install &amp;&amp; grub-mkconfig -o /boot/grub/grub.cfg</code></pre></div>
+            <h2 id="7-reboot">#7: Reboot</h2>
+            <p>You&#39;ve now installed a base Ubuntu system! If you&#39;d like to configure networking or add new users, I&#39;ve provide resources below:</p>
+            <p><a href="https://wiki.archlinux.org/title/Systemd-networkd"><i class="fa-solid fa-link"></i> systemd-networkd - Arch Wiki</a><br>
+            <a href="https://wiki.archlinux.org/title/Users_and_groups#User_management"><i class="fa-solid fa-link"></i> Users and groups - Arch Wiki</a></p>            
+		</main>
+		<script src="button.js"></script>
+		<main class=mobile>
+			<p>Mobile isn't supported</p>
+		</main>
+	</body>
+</html>

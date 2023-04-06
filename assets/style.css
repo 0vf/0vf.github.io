@@ -13,7 +13,7 @@ html {
 
 body::before {
 	content: "";
-	background: url('https://raw.githubusercontent.com/catppuccin/wallpapers/main/landscapes/Bridge.jpg') no-repeat center center fixed;
+	background: url('wallpaper.jpg') no-repeat center center fixed;
 	background-size: cover;
 	position: fixed;
 	outline: none;
@@ -84,11 +84,11 @@ nav ul li a {
 	text-decoration: none;
 }
 
-.disbsd-desktop {
+.desktop {
     display: block;
 }
 
-.disbsd-mobile {
+.mobile {
     display: none;
 }
 
@@ -441,11 +441,11 @@ h1 {
 		font-size: 36px;
 	}
 
-	.disbsd-desktop {
+	.desktop {
 		display: none;
 	}
 
-	.disbsd-mobile {
+	.mobile {
 		display: block;
 	}
 
