@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>ffqq - Ubuntu Minimal Install Guide</title>
-		<meta content="powerbash instructions" property="og:title" />
+		<meta content="Ubuntu Minimal Install Guide" property="og:title" />
 		<meta content="https://ffqq.gq/" property="og:url" />
 		<meta content="https://ffqq.gq/assets/pfp.png" property="og:image" />
 		<meta content="#4c4f69" data-react-helmet="true" name="theme-color" />
@@ -132,11 +132,11 @@ apt install debootstrap arch-install-scripts</code></pre></div>
             <p>Now, we&#39;ll initialize our newly-installed base Ubuntu install by adding basic utilities and GRUB:</p>
             <div class="code-box">
 				<button class="copy-button"><i class="fa-regular fa-copy"></i></button>
-				<pre><code class="language-bash">apt install grub-efi-amd64 efibootmgr linux-generic linux-generic-headers linux-generic-image</code></pre></div>
+				<pre><code class="language-bash">apt install --no-install-recommends grub-efi-amd64 efibootmgr linux-generic linux-generic-headers linux-generic-image</code></pre></div>
             <p>Once that has finished, install base utilities:</p>
             <div class="code-box">
                 <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
-                <pre><code class="language-bash">apt install curl git man nano patch software-properties-common</code></pre></div>
+                <pre><code class="language-bash">apt install --no-install-recommends curl git man nano patch software-properties-common</code></pre></div>
             <p>Now, install grub</p>
             <div class="code-box">
 				<button class="copy-button"><i class="fa-regular fa-copy"></i></button>
